@@ -2,6 +2,8 @@ import numpy as np
 import string
 import random
 
+import sys
+
 from time import process_time
 
 symbols = string.ascii_letters + string.digits
@@ -9,17 +11,17 @@ debug = False
 
 
 def random_string(length):
-    return ''.join(random.choice(symbols) for i in range(length))
+    return ''.join(random.choice(symbols) for _ in range(length))
 
 
-def time_analyze(function, iteration, length=5):
+def time_analyze(function, iterations, length=5):
     t1 = process_time()
-    for i in range(iteration):
+    for _ in range(iterations):
         s1 = random_string(length)
         s2 = random_string(length)
         function(s1, s2, False)
     t2 = process_time()
-    return (t2 - t1) / iteration
+    return (t2 - t1) / iterations
 
 
 def input_s1_s2():
@@ -28,9 +30,11 @@ def input_s1_s2():
     return s1, s2
 
 
-def start_func(func):
+def start_func(function):
     s1, s2 = input_s1_s2()
-    func(s1, s2, True)
+    value = function(s1, s2, True)
+    if value is not None:
+        print('\nReturn: ', value)
 
 
 def operations(s1, s2, matr):
@@ -48,11 +52,12 @@ def operations(s1, s2, matr):
             pathfinder(m, i - 1, j - 1)
             print('M', end=' ')
 
+    print('\nOperation:')
     pathfinder(matr, len(s1), len(s2))
 
 
 def output_matrix(s1, s2, matr):
-    print("\n   ", end=" ")
+    print("   ", end=" ")
     for i in s2:
         print(i, end=" ")
 
@@ -63,7 +68,6 @@ def output_matrix(s1, s2, matr):
             print("\n ", end=" ")
         for j in range(len(matr[i])):
             print(int(matr[i][j]), end=" ")
-    print("\n")
 
 
 def int_inputer(str, value):
@@ -79,10 +83,12 @@ def int_inputer(str, value):
 # Levenshtein distance
 def calc_dist_matrix(s1, s2, printable=False):
     matr = np.eye(len(s1) + 1, len(s2) + 1)
+
     for i in range(len(s1) + 1):
         matr[i][0] = i
     for j in range(len(s2) + 1):
         matr[0][j] = j
+
     for i in range(len(s1)):
         for j in range(len(s2)):
             d1 = matr[i + 1][j] + 1
@@ -94,10 +100,10 @@ def calc_dist_matrix(s1, s2, printable=False):
             matr[i + 1][j + 1] = min(d1, d2, d3)
 
     if printable:
-        print('Matrix: \n', matr)
+        print('Matrix:')
         output_matrix(s1, s2, matr)
-        print('Operation: \n   ', end='')
         operations(s1, s2, matr)
+    return matr[-1][-1]
 
 
 def calc_dist_recur(s1, s2, printable=False):
@@ -125,17 +131,16 @@ def calc_dist_recur_matrix(s1, s2, printable=False):
             return matr[i][j]
 
     matr = np.full((len(s1) + 1, len(s2) + 1), -1)
-
     for i in range(len(s1) + 1):
         matr[i][0] = i
     for j in range(len(s2) + 1):
         matr[0][j] = j
-
+    value = calc_value(matr, len(s1), len(s2))
     if printable:
-        print('Return:', calc_value(matr, len(s1), len(s2)))
-        print('Matrix \n', matr)
-        print('Operation: \n   ', end='')
+        print('Matrix \n')
+        output_matrix(s1, s2, matr)
         operations(s1, s2, matr)
+    return value
 
 
 def calc_dist_damerau(s1, s2, printable=False):
@@ -161,12 +166,19 @@ def calc_dist_damerau(s1, s2, printable=False):
             matr[i + 1][j + 1] = min(d1, d2, d3, d4)
 
     if printable:
-        print('Matrix: \n', matr)
+        print('\nMatrix: ')
+        output_matrix(s1, s2, matr)
+        operations(s1, s2, matr)
+    return matr[-1][-1]
 
 
 calc_func = [calc_dist_matrix, calc_dist_recur, calc_dist_recur_matrix, calc_dist_damerau]
 
 if __name__ == '__main__':
+    print(sys.getsizeof(calc_dist_matrix('code', 'sode')))
+    print(sys.getsizeof(calc_dist_recur))
+    print(sys.getsizeof(calc_dist_recur_matrix))
+    print(sys.getsizeof(calc_dist_damerau))
     while True:
         case = input('\n\nMenu: \n \
 1) Levenshtein distance matrix\n \
@@ -205,4 +217,4 @@ case: ')
             func = int_inputer('  input number of method:', 1)
             iteration = int_inputer('  input number of iterations:', 100)
             i = int_inputer('  input length of word:', 1)
-            print("🕐 Time: ", "{0:.8f}".format(time_analyze(calc_func[func], iteration, i)))
+            print("🕐 Time: ", "{0:.8f}".format(time_analyze(calc_func[func - 1], iteration, i)))
