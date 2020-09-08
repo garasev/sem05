@@ -2,12 +2,28 @@ import numpy as np
 import string
 import random
 
+import psutil
 import sys
 
 from time import process_time
 
 symbols = string.ascii_letters + string.digits
 debug = False
+
+d = 1
+matr = np.eye(5, 5)
+matr2 = np.eye(1, 1)
+matr3 = np.eye(1, 2)
+matr4 = np.eye(2, 1)
+print(sys.getsizeof('abcd'))
+print(sys.getsizeof('abc'))
+print(sys.getsizeof(''))
+print(sys.getsizeof(d))
+print(sys.getsizeof(12.))
+print(sys.getsizeof(matr))
+print(sys.getsizeof(matr2))
+print(sys.getsizeof(matr3))
+print(sys.getsizeof(matr4))
 
 
 def random_string(length):
@@ -175,10 +191,6 @@ def calc_dist_damerau(s1, s2, printable=False):
 calc_func = [calc_dist_matrix, calc_dist_recur, calc_dist_recur_matrix, calc_dist_damerau]
 
 if __name__ == '__main__':
-    print(sys.getsizeof(calc_dist_matrix('code', 'sode')))
-    print(sys.getsizeof(calc_dist_recur))
-    print(sys.getsizeof(calc_dist_recur_matrix))
-    print(sys.getsizeof(calc_dist_damerau))
     while True:
         case = input('\n\nMenu: \n \
 1) Levenshtein distance matrix\n \
@@ -188,6 +200,11 @@ if __name__ == '__main__':
 5) Time analyze\n \
 6) Time analyze 1 of methods\n \
 case: ')
+
+        p = psutil.Process()
+
+        mem1 = p.memory_info().peak_wset
+
         if case == '1':
             start_func(calc_dist_matrix)
         elif case == '2':
@@ -212,9 +229,11 @@ case: ')
                                                                                           iteration, i)))
                 print("   Damerau Levenshtein matrix   : ", "{0:.8f}".format(time_analyze(calc_dist_damerau,
                                                                                           iteration, i)))
-
         elif case == '6':
             func = int_inputer('  input number of method:', 1)
             iteration = int_inputer('  input number of iterations:', 100)
             i = int_inputer('  input length of word:', 1)
             print("🕐 Time: ", "{0:.8f}".format(time_analyze(calc_func[func - 1], iteration, i)))
+
+        mem2 = p.memory_info().peak_wset
+        print('Пиковая разность:', mem2 - mem1)
