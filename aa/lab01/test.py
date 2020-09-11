@@ -6,16 +6,24 @@ from main import calc_dist_damerau
 
 
 class TestDist(unittest.TestCase):
+    @unittest.skip('tak nado')
+    def setUp(self):
+        self.function = None
+
     def test_empty(self):
         self.assertEqual(self.function('', ''), 0)
         self.assertEqual(self.function('a', ''), 1)
         self.assertEqual(self.function('', 'a'), 1)
 
     def test_different(self):
+        # Match
         self.assertEqual(self.function('a', 'a'), 0)
+        # Delete
         self.assertEqual(self.function('ab', 'a'), 1)
+        # Insert
         self.assertEqual(self.function('a', 'ab'), 1)
-        self.assertEqual(self.function('ab', 'aс'), 1)0
+        # Replace
+        self.assertEqual(self.function('ab', 'aс'), 1)
 
 
 class TestLevMatrix(TestDist):

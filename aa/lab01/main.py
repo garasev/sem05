@@ -10,21 +10,6 @@ from time import process_time
 symbols = string.ascii_letters + string.digits
 debug = False
 
-d = 1
-matr = np.eye(5, 5)
-matr2 = np.eye(1, 1)
-matr3 = np.eye(1, 2)
-matr4 = np.eye(2, 1)
-print(sys.getsizeof('abcd'))
-print(sys.getsizeof('abc'))
-print(sys.getsizeof(''))
-print(sys.getsizeof(d))
-print(sys.getsizeof(12.))
-print(sys.getsizeof(matr))
-print(sys.getsizeof(matr2))
-print(sys.getsizeof(matr3))
-print(sys.getsizeof(matr4))
-
 
 def random_string(length):
     return ''.join(random.choice(symbols) for _ in range(length))
