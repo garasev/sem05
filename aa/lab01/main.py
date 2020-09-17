@@ -108,16 +108,14 @@ def calc_dist_matrix(s1, s2, printable=False):
 
 
 def calc_dist_recur(s1, s2, printable=False):
-    if debug or printable:
-        print(s1, s2)
-
     if s1 == '' or s2 == '':
-        return abs(len(s1) - len(s2))
-
-    tmp = 0 if (s1[-1] == s2[-1]) else 1
-    return min(calc_dist_recur(s1[:-1], s2) + 1,
-               calc_dist_recur(s1, s2[:-1]) + 1,
-               calc_dist_recur(s1[:-1], s2[:-1]) + tmp)
+        tmp = abs(len(s1) - len(s2))
+    else:
+        m = 0 if (s1[-1] == s2[-1]) else 1
+        tmp = min(calc_dist_recur(s1[:-1], s2) + 1,
+                  calc_dist_recur(s1, s2[:-1]) + 1,
+                  calc_dist_recur(s1[:-1], s2[:-1]) + m)
+    return tmp
 
 
 def calc_dist_recur_matrix(s1, s2, printable=False):

@@ -18,12 +18,16 @@ class TestDist(unittest.TestCase):
     def test_different(self):
         # Match
         self.assertEqual(self.function('a', 'a'), 0)
+        self.assertEqual(self.function('c', 'c'), 0)
         # Delete
         self.assertEqual(self.function('ab', 'a'), 1)
+        self.assertEqual(self.function('op', 'o'), 1)
         # Insert
         self.assertEqual(self.function('a', 'ab'), 1)
+        self.assertEqual(self.function('o', 'op'), 1)
         # Replace
         self.assertEqual(self.function('ab', 'aс'), 1)
+        self.assertEqual(self.function('op', 'od'), 1)
 
 
 class TestLevMatrix(TestDist):
