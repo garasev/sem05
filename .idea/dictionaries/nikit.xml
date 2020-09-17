@@ -2,6 +2,7 @@
   <dictionary name="nikit">
     <words>
       <w>damerau</w>
+      <w>datageneration</w>
       <w>inputer</w>
       <w>levenshtein</w>
       <w>matr</w>
