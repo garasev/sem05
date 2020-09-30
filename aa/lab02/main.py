@@ -1,14 +1,7 @@
 import numpy as np
-import string
 import random
 
-import psutil
-import sys
-
 from time import process_time
-
-debug = False
-
 
 def menu():
     print('\n🚀 Меню: ')

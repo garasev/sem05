@@ -1,5 +1,5 @@
 from main import *
-
+from random import randint
 
 def comp_matr(matr1, matr2):
     if len(matr1) != len(matr2):
@@ -45,6 +45,12 @@ def test():
     if not comp(5, 5, 5, vinograd, vinograd_opt):
         err += 1
 
+    iteration = 10
+    for _ in range(iteration):
+        size = [randint(1, iteration), randint(1, iteration), randint(1, iteration)]
+        for _ in range(iteration):
+            if not comp(size[0], size[1], size[2], classic, vinograd):
+                err += 1
     if err:
         print('Зафиксированно ', err, 'ошибок !!!')
     else:
