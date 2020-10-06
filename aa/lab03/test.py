@@ -9,16 +9,6 @@ def compare_arr(arr1, arr2):
             return False
     return True
 
-def sorted_arr(size, start=0):
-    arr = []
-    if start == 0:
-        for i in range(size):
-            arr.append(i)
-    else:
-        for i in range(size):
-            arr.append(size - i - 1)
-    return arr
-
 
 def full_test(func):
     err = 0
@@ -44,5 +34,5 @@ def full_test(func):
 
 if __name__ == '__main__':
     full_test(bubble)
-    full_test()
-    full_test(bubble)
+    full_test(selection)
+    full_test(insert)
