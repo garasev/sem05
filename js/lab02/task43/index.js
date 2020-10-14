@@ -10,7 +10,7 @@ app.listen(port);
 console.log("My server on port " + port);
 
 app.get("/me/page", function(request, response) {
-    const nameString = "a.html";
+    const nameString = "input.html";
     console.log(nameString);
     if (fs.existsSync(nameString)) {
         const contentString = fs.readFileSync(nameString, "utf8");
@@ -23,7 +23,7 @@ app.get("/me/page", function(request, response) {
 
 app.get("/input_fields", function(request, response) {
     let fields = request.query.fields;
-    fields = fields.split(",");
+    fields = fields.split(", ");
     const adress = request.query.adress;
     const nameString = "result.html";
     let html_page = '<!DOCTYPE html>\n\
