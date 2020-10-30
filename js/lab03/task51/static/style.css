@@ -1,0 +1,13 @@
+body {
+    padding: 30px;
+    background: burlywood;
+    font-family: Geneva, Arial, Helvetica, sans-serif;
+}
+
+.btn-class {
+    padding: 6px;
+    background: blueviolet;
+    color: white;
+    cursor: pointer;
+    display: inline-block;
+}
