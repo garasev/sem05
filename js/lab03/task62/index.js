@@ -11,14 +11,12 @@ const port = 5000;
 app.listen(port);
 console.log(`Server on port ${port}`);
 
-const way = __dirname + "/static";
+const way = __dirname + "/static";  
 app.use(express.static(way));
 
 const users = [
-    {"login" : "Dimakrut", "password" : "2280", "age" : 9, "hobby" : "tennis"},
-    {"login" : "Vamar", "password" : "1488", "age" : 12, "hobby" : "football"},
-    {"login" : "Zeus", "password" : "3220", "age" : 18, "hobby" : "basketball"},
-    {"login" : "Morg", "password" : "1234", "age" : 26, "hobby" : "hockey"}
+    {"login" : "nikita", "password" : "1830", "age" : 20, "hobby" : "tennis"},
+    {"login" : "dima", "password" : "da", "age" : 1, "hobby" : "peniboards"}
 ]
 
 // работа с сессией

@@ -21,14 +21,15 @@ app.use(function(req, res, next) {
 });
 
 let gameArray = [
-    {name: "DOTA2", description: "multiplayer online battle arena", age: 6},
-    {name: "GTA5", description: "action-adventure", age: 18},
-    {name: "CS-GO", description: "first-person shooter", age: 16}
+    {name: "Divinity", description: "RPG", age: 18},
+    {name: "gta", description: "action", age: 18},
+    {name: "cs-go", description: "shooter", age: 12},
+    {name: "minecraft", description: "game for child", age: 6, agese: 12}
 ];
 
 // выдача страницы c играми
 app.get("/page/games", function(request, response) {
-    const key = request.query.k;
+    const key = request.query.k ;
     console.log(key);
     const infoObject = {
         descriptionValue: `Список компьютерных игр, с возрастным ограничением ${key}`,
