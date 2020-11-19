@@ -1,0 +1,8 @@
+Input size of array: 3
+Input elem of array:
+3
+3
+3
+Input p: 0
+Array:
+1.285714 1.285714 3.000000 1.285714

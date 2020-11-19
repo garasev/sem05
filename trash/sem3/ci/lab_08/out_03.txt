@@ -1,0 +1,4 @@
+Input size of array: 2
+Input elem of array:
+а
+Error of create or fill array

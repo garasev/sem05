@@ -1,0 +1,6 @@
+Input size of array: 3
+Input elem of array:
+3
+3
+3
+Input p: 0

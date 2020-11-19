@@ -1,0 +1,9 @@
+Release
+gcc
+-std=c99 -Wall -Werror -c main.c
+gcc
+-o main.exe main.o
+rm
+*.o *.exe
+Debug
+-g3

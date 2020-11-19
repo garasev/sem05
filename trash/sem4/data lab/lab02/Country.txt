@@ -1,0 +1,18 @@
+
+Russian 12000 Moscow Eurasian sport alpine_skiing 30000
+Portugal 1365 Lisbon Eurasian sport surfing 16000
+Canada 9569 Ottawa North_America sport ascent 64000
+Morocco 784 Rabat Africa beach 3 35 40 4
+Sweden 953 Stockholm Eurasian sport ascent 75000
+Florida 1000 Tallahassee NorthAmerica beach 5 41 30 10
+UK 7423 London Eurasian excurs 145 history
+Egyped 4523 Piramida Africa beach 6 30 40 4
+Bulgaria 845 Sofia Eurasian excurs 984 natural
+Italy 7652 Roma Eurasian beach 8 30 40 5
+Austria 1234 Vienna Eurasian excurs 3 natural
+Belorussia 8070 Minsk Eurasian excurs 25 art
+Spain 3000 Madrid Eurasian excurs 3 natura
+Brasiliya 9696 Brasilia South_America excurs 10 history
+Germany 8000 Berlin Eurasian excurs 123 history
+America 8000 Washington America excurs 10 art
+Albany 156 Tirana Africa sport ascent 7500

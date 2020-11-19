@@ -1,0 +1,10 @@
+Start array:
+ 3  13  -1
+Zadanie #1
+ multiple 3 = 3 < 16 = ending 3
+Zadanie #2
+ Don't have one of even or odd element.
+Zadanie #3
+ Max positive elem: 13
+Zadanie #4
+ 3 13

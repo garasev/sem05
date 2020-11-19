@@ -1,0 +1,1 @@
+Input size of array: a
