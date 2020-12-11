@@ -1,0 +1,13 @@
+D:\git\p0rn\aa\lab04\Threads\Threads\obj\Debug\netcoreapp3.1\Threads.csprojAssemblyReference.cache
+D:\git\p0rn\aa\lab04\Threads\Threads\obj\Debug\netcoreapp3.1\Threads.AssemblyInfoInputs.cache
+D:\git\p0rn\aa\lab04\Threads\Threads\obj\Debug\netcoreapp3.1\Threads.AssemblyInfo.cs
+D:\git\p0rn\aa\lab04\Threads\Threads\obj\Debug\netcoreapp3.1\Threads.csproj.CoreCompileInputs.cache
+D:\git\p0rn\aa\lab04\Threads\Threads\bin\Debug\netcoreapp3.1\Threads.exe
+D:\git\p0rn\aa\lab04\Threads\Threads\bin\Debug\netcoreapp3.1\Threads.deps.json
+D:\git\p0rn\aa\lab04\Threads\Threads\bin\Debug\netcoreapp3.1\Threads.runtimeconfig.json
+D:\git\p0rn\aa\lab04\Threads\Threads\bin\Debug\netcoreapp3.1\Threads.runtimeconfig.dev.json
+D:\git\p0rn\aa\lab04\Threads\Threads\bin\Debug\netcoreapp3.1\Threads.dll
+D:\git\p0rn\aa\lab04\Threads\Threads\bin\Debug\netcoreapp3.1\Threads.pdb
+D:\git\p0rn\aa\lab04\Threads\Threads\obj\Debug\netcoreapp3.1\Threads.dll
+D:\git\p0rn\aa\lab04\Threads\Threads\obj\Debug\netcoreapp3.1\Threads.pdb
+D:\git\p0rn\aa\lab04\Threads\Threads\obj\Debug\netcoreapp3.1\Threads.genruntimeconfig.cache

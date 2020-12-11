@@ -1,0 +1,13 @@
+D:\git\p0rn\aa\lab05\Conveyor\Conveyor\bin\Debug\netcoreapp3.1\Conveyor.exe
+D:\git\p0rn\aa\lab05\Conveyor\Conveyor\bin\Debug\netcoreapp3.1\Conveyor.deps.json
+D:\git\p0rn\aa\lab05\Conveyor\Conveyor\bin\Debug\netcoreapp3.1\Conveyor.runtimeconfig.json
+D:\git\p0rn\aa\lab05\Conveyor\Conveyor\bin\Debug\netcoreapp3.1\Conveyor.runtimeconfig.dev.json
+D:\git\p0rn\aa\lab05\Conveyor\Conveyor\bin\Debug\netcoreapp3.1\Conveyor.dll
+D:\git\p0rn\aa\lab05\Conveyor\Conveyor\bin\Debug\netcoreapp3.1\Conveyor.pdb
+D:\git\p0rn\aa\lab05\Conveyor\Conveyor\obj\Debug\netcoreapp3.1\Conveyor.csprojAssemblyReference.cache
+D:\git\p0rn\aa\lab05\Conveyor\Conveyor\obj\Debug\netcoreapp3.1\Conveyor.AssemblyInfoInputs.cache
+D:\git\p0rn\aa\lab05\Conveyor\Conveyor\obj\Debug\netcoreapp3.1\Conveyor.AssemblyInfo.cs
+D:\git\p0rn\aa\lab05\Conveyor\Conveyor\obj\Debug\netcoreapp3.1\Conveyor.csproj.CoreCompileInputs.cache
+D:\git\p0rn\aa\lab05\Conveyor\Conveyor\obj\Debug\netcoreapp3.1\Conveyor.dll
+D:\git\p0rn\aa\lab05\Conveyor\Conveyor\obj\Debug\netcoreapp3.1\Conveyor.pdb
+D:\git\p0rn\aa\lab05\Conveyor\Conveyor\obj\Debug\netcoreapp3.1\Conveyor.genruntimeconfig.cache
