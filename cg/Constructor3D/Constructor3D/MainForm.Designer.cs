@@ -102,7 +102,7 @@
             this.button_raytrace.Name = "button_raytrace";
             this.button_raytrace.Size = new System.Drawing.Size(313, 58);
             this.button_raytrace.TabIndex = 5;
-            this.button_raytrace.Text = "Применить";
+            this.button_raytrace.Text = "Отобразить";
             this.button_raytrace.UseVisualStyleBackColor = true;
             this.button_raytrace.Click += new System.EventHandler(this.button_raytrace_Click);
             // 
