@@ -65,12 +65,12 @@ ALTER TABLE trams ADD CONSTRAINT valid_mileage CHECK (mileage >= 0);
 ALTER TABLE schedules ADD CONSTRAINT valid_time CHECK (time LIKE '__:__');
 
 
-COPY models(model, capacity, country) FROM 'C:\models.csv' WITH (FORMAT csv);
-COPY trams(plate, model_id, mileage, readiness) FROM 'C:\trams.csv' WITH (FORMAT csv);
-COPY drivers(name, raiting, exp) FROM 'C:\drivers.csv' WITH (FORMAT csv);
-COPY conductors(name, raiting, finer_count) FROM 'C:\conductors.csv' WITH (FORMAT csv);
-COPY finers(name, fine_count) FROM 'C:\finers.csv' WITH (FORMAT csv);
-COPY schedules(time, tram_id, driver_id, conductor_id) FROM 'C:\schedules.csv' WITH (FORMAT csv);
-COPY fines(conductor_id, finer_id, data) FROM 'C:\fines.csv' WITH (FORMAT csv);
+COPY models(model, capacity, country) FROM 'D:\git\p0rn\bd\csv\models.csv' WITH (FORMAT csv);
+COPY trams(plate, model_id, mileage, readiness) FROM 'D:\git\p0rn\bd\csv\trams.csv' WITH (FORMAT csv);
+COPY drivers(name, raiting, exp) FROM 'D:\git\p0rn\bd\csv\drivers.csv' WITH (FORMAT csv);
+COPY conductors(name, raiting, finer_count) FROM 'D:\git\p0rn\bd\csv\conductors.csv' WITH (FORMAT csv);
+COPY finers(name, fine_count) FROM 'D:\git\p0rn\bd\csv\finers.csv' WITH (FORMAT csv);
+COPY schedules(time, tram_id, driver_id, conductor_id) FROM 'D:\git\p0rn\bd\csv\schedules.csv' WITH (FORMAT csv);
+COPY fines(conductor_id, finer_id, data) FROM 'D:\git\p0rn\bd\csv\fines.csv' WITH (FORMAT csv);
 
 

@@ -144,10 +144,10 @@ if __name__ == '__main__':
 
     print("CSV generation complete!")
 
-    shutil.move('drivers.csv', 'C:/bd/drivers.csv')
-    shutil.move('models.csv', 'C:/bd/models.csv')
-    shutil.move('trams.csv', 'C:/bd/trams.csv')
-    shutil.move('schedules.csv', 'C:/bd/schedules.csv')
-    shutil.move('fines.csv', 'C:/bd/fines.csv')
-    shutil.move('finers.csv', 'C:/bd/finers.csv')
-    shutil.move('conductors.csv', 'C:/bd/conductors.csv')
+    # shutil.move('drivers.csv', 'C:/bd/drivers.csv')
+    # shutil.move('models.csv', 'C:/bd/models.csv')
+    # shutil.move('trams.csv', 'C:/bd/trams.csv')
+    # shutil.move('schedules.csv', 'C:/bd/schedules.csv')
+    # shutil.move('fines.csv', 'C:/bd/fines.csv')
+    # shutil.move('finers.csv', 'C:/bd/finers.csv')
+    # shutil.move('conductors.csv', 'C:/bd/conductors.csv')
