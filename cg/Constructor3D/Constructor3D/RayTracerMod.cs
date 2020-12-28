@@ -441,7 +441,7 @@ namespace Constructor3D
             return new Vector3(2 * n_dot_r * N.x - R.x, 2 * n_dot_r * N.y - R.y, 2 * n_dot_r * N.z - R.z);
         }
 
-        private Vector3 TraceRay(Vector3 camera, Vector3 dir, double t_min, double t_max, int depth, int x, int y)
+        private Vector3 TraceRay(Vector3 camera, Vector3 dir, double t_min, double t_max, int depth)
         {
             double closest_t = Double.PositiveInfinity;
             Primitive closest_object = null;
@@ -478,7 +478,7 @@ namespace Constructor3D
                 return localColor;
 
             Vector3 R = ReflectRay(-dir, N);
-            Vector3 reflectedColor = TraceRay(P, R, 0.001, Double.PositiveInfinity, depth - 1, x, y);
+            Vector3 reflectedColor = TraceRay(P, R, 0.001, Double.PositiveInfinity, depth - 1);
 
             Vector3 kLocalColor = (1 - r) * localColor;
             Vector3 rReflectedColor = r * reflectedColor;
@@ -620,7 +620,7 @@ namespace Constructor3D
                 for (int y = p.start_y; y < p.start_y + p.height; y++)
                 {
                     D = CanvasToViewport(x, y) * scene.camera.rotation;
-                    color = TraceRay(camera.position, D, 1, Double.PositiveInfinity, recursion_depth, x, y);
+                    color = TraceRay(camera.position, D, 1, Double.PositiveInfinity, recursion_depth);
                     PutPixel(x, y, Clamp(color));
 
                 }
