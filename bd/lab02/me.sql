@@ -54,10 +54,15 @@ SELECT ROUND(AVG(raiting)::numeric, 2) AS average_raiting, exp
 FROM drivers 
 GROUP BY exp
 
--- 8. Минимальный и максимальный рейтинг водителей по стажу
--- 8. Инструкция SELECT, использующая скалярные подзапросы в выражениях столбцов.
-SELECT MIN(raiting) AS min_raiting, MAX(raiting) AS max_raiting, exp
-FROM drivers 
+-- 8.* Минимальный и максимальный рейтинг водителей по стажу
+-- 8.* Инструкция SELECT, использующая скалярные подзапросы в выражениях столбцов.
+SELECT *
+FROM drivers
+WHERE raiting = 
+(
+	SELECT MIN(raiting)
+	FROM drivers
+)
 GROUP BY exp
 
 -- 9. Проверка готовности трамвайев
@@ -228,13 +233,20 @@ SELECT name, raiting, finer_count,
 	   MAX(finer_count) OVER (PARTITION BY raiting) AS max_finer
 FROM conductors
 
--- 25. Список водителей без дублежей
+-- 25. Список водителей разных стажей без дублежей.
 -- 25. Оконные функции для устранения дублей.
-SELECT * 
-FROM 
-(
-	SELECT time, name, exp, raiting, row_number() OVER (PARTITION BY drivers.driver_id) AS row
-	FROM schedules JOIN drivers ON schedules.driver_id = drivers.driver_id
-) AS tmp
-WHERE row = 1
-ORDER BY time
+CREATE TABLE IF NOT EXISTS cop(LIKE schedules INCLUDING ALL);
+INSERT INTO cop 
+SELECT * FROM schedules
+
+SELECT * FROM cop JOIN drivers ON drivers.driver_id = cop.driver_id
+
+DELETE 
+FROM cop WHERE route_id in (
+SELECT route_id
+FROM
+	(
+		SELECT route_id, row_number() OVER (PARTITION BY drivers.exp) AS row
+		FROM schedules JOIN drivers ON schedules.driver_id = drivers.driver_id
+	) as tttt
+	WHERE row > 1)

@@ -148,23 +148,23 @@ def calc_dist_damerau(s1, s2, printable=False):
     matr = np.eye(len(s1) + 1, len(s2) + 1)
 
     for i in range(len(s1) + 1):
-        matr[i][0] = i
+        matr[i][0] = i # (1)
     for j in range(len(s2) + 1):
-        matr[0][j] = j
+        matr[0][j] = j # (2)
 
     for i in range(len(s1)):
         for j in range(len(s2)):
-            d1 = matr[i + 1][j] + 1
-            d2 = matr[i][j + 1] + 1
+            d1 = matr[i + 1][j] + 1 # (3)
+            d2 = matr[i][j + 1] + 1 #(4)
             if s1[i] == s2[j]:
-                d3 = matr[i][j]
+                d3 = matr[i][j] # (5)
             else:
-                d3 = matr[i][j] + 1
+                d3 = matr[i][j] + 1 #(6)
             if s1[i] == s2[j - 1] and s1[i - 1] == s2[j] and i > 0 and j > 0:
-                d4 = matr[i - 1][j - 1] + 1
+                d4 = matr[i - 1][j - 1] + 1 # (7)
             else:
-                d4 = d1
-            matr[i + 1][j + 1] = min(d1, d2, d3, d4)
+                d4 = d1 # (8)
+            matr[i + 1][j + 1] = min(d1, d2, d3, d4) # (9)
 
     if printable:
         print('\nMatrix: ')

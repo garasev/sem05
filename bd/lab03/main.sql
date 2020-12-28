@@ -88,7 +88,7 @@ SELECT * FROM get_next(1);
 -- B. Четыре хранимых процедуры
 -- 1. Хранимую процедуру без параметров или с параметрами
 -- 1. 
-CREATE OR REPLACE function inc_capacity(id int, cap int) RETURNS void
+CREATE OR REPLACE PROCEDURE inc_capacity(id int, cap int)
 AS $$
 BEGIN
     UPDATE models
@@ -99,7 +99,7 @@ $$
 LANGUAGE 'plpgsql';
 
 SELECT * FROM models;
-SELECT * FROM inc_capacity(1, 10);
+CALL inc_capacity(1, 10);
 
 -- 2. Рекурсивную хранимую процедуру или хранимую процедур с рекурсивным ОТВ
 -- 2.
@@ -117,7 +117,7 @@ UPDATE local_tab
 SET father = NULL
 WHERE father = 11;
 
-CREATE OR REPLACE FUNCTION rec_upd_models(pid int, cap int) RETURNS void
+CREATE OR REPLACE PROCEDURE rec_upd_models(pid int, cap int)
 AS $$
 BEGIN
     UPDATE local_tab
@@ -125,13 +125,13 @@ BEGIN
     WHERE model_id = pid;
     IF EXISTS (SELECT * FROM local_tab WHERE father IS NOT null AND model_id = pid)  
 	THEN
-         PERFORM * FROM rec_upd_models(pid + 1, cap + 10);
+         CALL rec_upd_models(pid + 1, cap + 10);
     END IF;
 END;
 $$
 LANGUAGE 'plpgsql';
 
-SELECT * FROM rec_upd_models(1, 100);
+CALL rec_upd_models(1, 100);
 SELECT * FROM local_tab;
 
 -- 3. Хранимую процедуру с курсором
@@ -236,3 +236,26 @@ CREATE TRIGGER trig_disable_insert
 	EXECUTE PROCEDURE func_disable_insert();
 	
 INSERT INTO schedules_view VALUES(361, '00:01', 1, 1, 1);
+
+-- Защита.
+CREATE TABLE IF NOT EXISTS paid_fines(LIKE fines INCLUDING ALL);
+
+CREATE OR REPLACE FUNCTION ins_paid()
+RETURNS trigger AS
+$$
+BEGIN
+	INSERT INTO paid_fines VALUES(OLD.fine_id, OLD.data, OLD.finer_id, OLD.conductor_id);
+	RETURN OLD;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER paid
+	AFTER DELETE ON fines
+	FOR EACH ROW
+	EXECUTE PROCEDURE ins_paid();
+
+DELETE FROM fines
+WHERE fine_id = 5001
+
+SELECT * FROM fines WHERE fine_id >= 5000
+SELECT * FROM paid_fines
