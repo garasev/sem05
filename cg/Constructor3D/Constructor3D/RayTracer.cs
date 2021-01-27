@@ -316,7 +316,7 @@ namespace Constructor3D
         {
             Params p = (Params)obj;
             Vector3 dir = null;
-            Vector3 color = null;
+            Vector3 color;
 
             for (int x = p.start_x; x < p.start_x + p.width; x++)
             {

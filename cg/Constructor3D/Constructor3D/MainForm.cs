@@ -19,10 +19,10 @@ namespace Constructor3D
         private int[] last_obj = new int[5] { 0, 0, 0, 0, 0 };
 
         private string[] cam_tab = new string[6] { "x", "y", "z", "OX", "OY", "OZ"};
-        private string[] sphere_tab = new string[9] {"x", "y", "z", "радиус", "блистательность", "зеркальность (0-1)", "цвет R", "цвет G", "цвет B" };
-        private string[] par_tab = new string[11] { "x", "y", "z", "длина", "ширина", "высота", "блистательность", "зеркальность (0-1)", "цвет R", "цвет G", "цвет B" };
-        private string[] cyl_tab = new string[10] { "x", "y", "z", "радиус", "высота", "блистательность", "зеркальность (0-1)", "цвет R", "цвет G", "цвет B" };
-        private string[] pyr_tab = new string[10] { "x", "y", "z", "высота", "ширина", "блистательность", "зеркальность (0-1)", "цвет R", "цвет G", "цвет B" };
+        private string[] sphere_tab = new string[9] {"x", "y", "z", "радиус", "гладкость", "отполированность (0-1)", "цвет R", "цвет G", "цвет B" };
+        private string[] par_tab = new string[11] { "x", "y", "z", "длина", "ширина", "высота", "гладкость", "отполированность (0-1)", "цвет R", "цвет G", "цвет B" };
+        private string[] cyl_tab = new string[10] { "x", "y", "z", "радиус", "высота", "гладкость", "отполированность (0-1)", "цвет R", "цвет G", "цвет B" };
+        private string[] pyr_tab = new string[10] { "x", "y", "z", "высота", "ширина", "гладкость", "отполированность (0-1)", "цвет R", "цвет G", "цвет B" };
         private string[] light_tab = new string[4] { "x", "y", "z", "интенсивность"};
 
         public MainForm()
@@ -308,204 +308,210 @@ namespace Constructor3D
                 }
                 else
                 {
-                    Primitive prim = facade_viewer.controller.scene.primitives[tmp - obj_count[4] - 1];
-                    if (prim is Sphere)
+                    try
                     {
-                        try
+                        Primitive prim = facade_viewer.controller.scene.primitives[tmp - obj_count[4] - 1];
+                        if (prim is Sphere)
                         {
-                            double x, y, z;
-                            double r, g, b;
-                            double radius, specular, reflective;
+                            try
+                            {
+                                double x, y, z;
+                                double r, g, b;
+                                double radius, specular, reflective;
 
-                            x = Convert.ToDouble(dgv.Rows[0].Cells[1].Value);
-                            y = Convert.ToDouble(dgv.Rows[1].Cells[1].Value);
-                            z = Convert.ToDouble(dgv.Rows[2].Cells[1].Value);
+                                x = Convert.ToDouble(dgv.Rows[0].Cells[1].Value);
+                                y = Convert.ToDouble(dgv.Rows[1].Cells[1].Value);
+                                z = Convert.ToDouble(dgv.Rows[2].Cells[1].Value);
 
-                            r = Convert.ToInt16(dgv.Rows[6].Cells[1].Value);
-                            g = Convert.ToInt16(dgv.Rows[7].Cells[1].Value);
-                            b = Convert.ToInt16(dgv.Rows[8].Cells[1].Value);
+                                r = Convert.ToInt16(dgv.Rows[6].Cells[1].Value);
+                                g = Convert.ToInt16(dgv.Rows[7].Cells[1].Value);
+                                b = Convert.ToInt16(dgv.Rows[8].Cells[1].Value);
 
-                            r = (r < 0) ? 0 : r;
-                            r = (r > 255) ? 255 : r;
+                                r = (r < 0) ? 0 : r;
+                                r = (r > 255) ? 255 : r;
 
-                            g = (g < 0) ? 0 : g;
-                            g = (g > 255) ? 255 : g;
+                                g = (g < 0) ? 0 : g;
+                                g = (g > 255) ? 255 : g;
 
-                            b = (b < 0) ? 0 : b;
-                            b = (b > 255) ? 255 : b;
+                                b = (b < 0) ? 0 : b;
+                                b = (b > 255) ? 255 : b;
 
-                            radius = Convert.ToDouble(dgv.Rows[3].Cells[1].Value);
-                            specular = Convert.ToDouble(dgv.Rows[4].Cells[1].Value);
-                            reflective = Convert.ToDouble(dgv.Rows[5].Cells[1].Value);
+                                radius = Convert.ToDouble(dgv.Rows[3].Cells[1].Value);
+                                specular = Convert.ToDouble(dgv.Rows[4].Cells[1].Value);
+                                reflective = Convert.ToDouble(dgv.Rows[5].Cells[1].Value);
 
-                            specular = (specular < 0) ? 0 : specular;
-                            specular = (specular > 1000) ? 1000 : specular;
+                                specular = (specular < 0) ? 0 : specular;
+                                specular = (specular > 1000) ? 1000 : specular;
 
-                            reflective = (reflective < 0) ? 0 : reflective;
-                            reflective = (reflective > 1) ? 1 : reflective;
+                                reflective = (reflective < 0) ? 0 : reflective;
+                                reflective = (reflective > 1) ? 1 : reflective;
 
-                            Vector3 pos = new Vector3(x, y, z);
+                                Vector3 pos = new Vector3(x, y, z);
 
-                            Vector3 color = new Vector3(r, g, b);
+                                Vector3 color = new Vector3(r, g, b);
 
-                            Sphere tmp_sphere = new Sphere(pos, radius, color, specular, reflective);
-                            facade_viewer.controller.scene.primitives[tmp - obj_count[4] - 1] = tmp_sphere;
+                                Sphere tmp_sphere = new Sphere(pos, radius, color, specular, reflective);
+                                facade_viewer.controller.scene.primitives[tmp - obj_count[4] - 1] = tmp_sphere;
+                            }
+                            catch
+                            {
+                                MessageBox.Show("Ошибка при изменении атрибутов объекта");
+                            }
                         }
-                        catch
+                        else if (prim is Parallelepiped)
                         {
-                            MessageBox.Show("Ошибка при изменении атрибутов объекта");
+                            try
+                            {
+                                double x, y, z;
+                                double r, g, b;
+                                double width, height, length;
+                                double specular, reflective;
+
+                                x = Convert.ToDouble(dgv.Rows[0].Cells[1].Value);
+                                y = Convert.ToDouble(dgv.Rows[1].Cells[1].Value);
+                                z = Convert.ToDouble(dgv.Rows[2].Cells[1].Value);
+
+                                r = Convert.ToInt16(dgv.Rows[8].Cells[1].Value);
+                                g = Convert.ToInt16(dgv.Rows[9].Cells[1].Value);
+                                b = Convert.ToInt16(dgv.Rows[10].Cells[1].Value);
+
+                                r = (r < 0) ? 0 : r;
+                                r = (r > 255) ? 255 : r;
+
+                                g = (g < 0) ? 0 : g;
+                                g = (g > 255) ? 255 : g;
+
+                                b = (b < 0) ? 0 : b;
+                                b = (b > 255) ? 255 : b;
+
+                                width = Convert.ToDouble(dgv.Rows[3].Cells[1].Value);
+                                height = Convert.ToDouble(dgv.Rows[4].Cells[1].Value);
+                                length = Convert.ToDouble(dgv.Rows[5].Cells[1].Value);
+
+                                specular = Convert.ToDouble(dgv.Rows[6].Cells[1].Value);
+                                reflective = Convert.ToDouble(dgv.Rows[7].Cells[1].Value);
+
+                                specular = (specular < 0) ? 0 : specular;
+                                specular = (specular > 1000) ? 1000 : specular;
+
+                                reflective = (reflective < 0) ? 0 : reflective;
+                                reflective = (reflective > 1) ? 1 : reflective;
+
+                                Vector3 pos = new Vector3(x, y, z);
+
+                                Vector3 color = new Vector3(r, g, b);
+
+                                Parallelepiped tmp_prim = new Parallelepiped(pos, color, height, width, length, specular, reflective);
+                                facade_viewer.controller.scene.primitives[tmp - obj_count[4] - 1] = tmp_prim;
+                            }
+                            catch
+                            {
+                                MessageBox.Show("Ошибка при изменении атрибутов объекта");
+                            }
+                        }
+                        else if (prim is Cylinder)
+                        {
+                            try
+                            {
+                                double x, y, z;
+                                double r, g, b;
+                                double radius, length;
+                                double specular, reflective;
+
+                                x = Convert.ToDouble(dgv.Rows[0].Cells[1].Value);
+                                y = Convert.ToDouble(dgv.Rows[1].Cells[1].Value);
+                                z = Convert.ToDouble(dgv.Rows[2].Cells[1].Value);
+
+                                r = Convert.ToInt16(dgv.Rows[7].Cells[1].Value);
+                                g = Convert.ToInt16(dgv.Rows[8].Cells[1].Value);
+                                b = Convert.ToInt16(dgv.Rows[9].Cells[1].Value);
+
+                                r = (r < 0) ? 0 : r;
+                                r = (r > 255) ? 255 : r;
+
+                                g = (g < 0) ? 0 : g;
+                                g = (g > 255) ? 255 : g;
+
+                                b = (b < 0) ? 0 : b;
+                                b = (b > 255) ? 255 : b;
+
+                                radius = Convert.ToDouble(dgv.Rows[3].Cells[1].Value);
+                                length = Convert.ToDouble(dgv.Rows[4].Cells[1].Value);
+
+                                specular = Convert.ToDouble(dgv.Rows[5].Cells[1].Value);
+                                reflective = Convert.ToDouble(dgv.Rows[6].Cells[1].Value);
+
+                                specular = (specular < 0) ? 0 : specular;
+                                specular = (specular > 1000) ? 1000 : specular;
+
+                                reflective = (reflective < 0) ? 0 : reflective;
+                                reflective = (reflective > 1) ? 1 : reflective;
+
+                                Vector3 pos = new Vector3(x, y, z);
+
+                                Vector3 color = new Vector3(r, g, b);
+
+                                Cylinder tmp_prim = new Cylinder(pos, color, radius, length, specular, reflective);
+                                facade_viewer.controller.scene.primitives[tmp - obj_count[4] - 1] = tmp_prim;
+                            }
+                            catch
+                            {
+                                MessageBox.Show("Ошибка при изменении атрибутов объекта");
+                            }
+                        }
+                        else if (prim is Pyramid)
+                        {
+                            try
+                            {
+                                double x, y, z;
+                                double r, g, b;
+                                double height, width;
+                                double specular, reflective;
+
+                                x = Convert.ToDouble(dgv.Rows[0].Cells[1].Value);
+                                y = Convert.ToDouble(dgv.Rows[1].Cells[1].Value);
+                                z = Convert.ToDouble(dgv.Rows[2].Cells[1].Value);
+
+                                r = Convert.ToInt16(dgv.Rows[7].Cells[1].Value);
+                                g = Convert.ToInt16(dgv.Rows[8].Cells[1].Value);
+                                b = Convert.ToInt16(dgv.Rows[9].Cells[1].Value);
+
+                                r = (r < 0) ? 0 : r;
+                                r = (r > 255) ? 255 : r;
+
+                                g = (g < 0) ? 0 : g;
+                                g = (g > 255) ? 255 : g;
+
+                                b = (b < 0) ? 0 : b;
+                                b = (b > 255) ? 255 : b;
+
+                                height = Convert.ToDouble(dgv.Rows[3].Cells[1].Value);
+                                width = Convert.ToDouble(dgv.Rows[4].Cells[1].Value);
+
+                                specular = Convert.ToDouble(dgv.Rows[5].Cells[1].Value);
+                                reflective = Convert.ToDouble(dgv.Rows[6].Cells[1].Value);
+
+                                specular = (specular < 0) ? 0 : specular;
+                                specular = (specular > 1000) ? 1000 : specular;
+
+                                reflective = (reflective < 0) ? 0 : reflective;
+                                reflective = (reflective > 1) ? 1 : reflective;
+
+                                Vector3 pos = new Vector3(x, y, z);
+
+                                Vector3 color = new Vector3(r, g, b);
+
+                                Pyramid tmp_prim = new Pyramid(pos, color, height, width, specular, reflective);
+                                facade_viewer.controller.scene.primitives[tmp - obj_count[4] - 1] = tmp_prim;
+                            }
+                            catch
+                            {
+                                MessageBox.Show("Ошибка при изменении атрибутов объекта");
+                            }
                         }
                     }
-                    else if (prim is Parallelepiped)
+                    catch
                     {
-                        try
-                        {
-                            double x, y, z;
-                            double r, g, b;
-                            double width, height, length;
-                            double specular, reflective;
-
-                            x = Convert.ToDouble(dgv.Rows[0].Cells[1].Value);
-                            y = Convert.ToDouble(dgv.Rows[1].Cells[1].Value);
-                            z = Convert.ToDouble(dgv.Rows[2].Cells[1].Value);
-
-                            r = Convert.ToInt16(dgv.Rows[8].Cells[1].Value);
-                            g = Convert.ToInt16(dgv.Rows[9].Cells[1].Value);
-                            b = Convert.ToInt16(dgv.Rows[10].Cells[1].Value);
-
-                            r = (r < 0) ? 0 : r;
-                            r = (r > 255) ? 255 : r;
-
-                            g = (g < 0) ? 0 : g;
-                            g = (g > 255) ? 255 : g;
-
-                            b = (b < 0) ? 0 : b;
-                            b = (b > 255) ? 255 : b;
-
-                            width = Convert.ToDouble(dgv.Rows[3].Cells[1].Value);
-                            height = Convert.ToDouble(dgv.Rows[4].Cells[1].Value);
-                            length = Convert.ToDouble(dgv.Rows[5].Cells[1].Value);
-
-                            specular = Convert.ToDouble(dgv.Rows[6].Cells[1].Value);
-                            reflective = Convert.ToDouble(dgv.Rows[7].Cells[1].Value);
-
-                            specular = (specular < 0) ? 0 : specular;
-                            specular = (specular > 1000) ? 1000 : specular;
-
-                            reflective = (reflective < 0) ? 0 : reflective;
-                            reflective = (reflective > 1) ? 1 : reflective;
-
-                            Vector3 pos = new Vector3(x, y, z);
-
-                            Vector3 color = new Vector3(r, g, b);
-
-                            Parallelepiped tmp_prim = new Parallelepiped(pos, color, height, width, length, specular, reflective);
-                            facade_viewer.controller.scene.primitives[tmp - obj_count[4] - 1] = tmp_prim;
-                        }
-                        catch
-                        {
-                            MessageBox.Show("Ошибка при изменении атрибутов объекта");
-                        }
-                    }
-                    else if (prim is Cylinder)
-                    {
-                        try
-                        {
-                            double x, y, z;
-                            double r, g, b;
-                            double radius, length;
-                            double specular, reflective;
-
-                            x = Convert.ToDouble(dgv.Rows[0].Cells[1].Value);
-                            y = Convert.ToDouble(dgv.Rows[1].Cells[1].Value);
-                            z = Convert.ToDouble(dgv.Rows[2].Cells[1].Value);
-
-                            r = Convert.ToInt16(dgv.Rows[7].Cells[1].Value);
-                            g = Convert.ToInt16(dgv.Rows[8].Cells[1].Value);
-                            b = Convert.ToInt16(dgv.Rows[9].Cells[1].Value);
-
-                            r = (r < 0) ? 0 : r;
-                            r = (r > 255) ? 255 : r;
-
-                            g = (g < 0) ? 0 : g;
-                            g = (g > 255) ? 255 : g;
-
-                            b = (b < 0) ? 0 : b;
-                            b = (b > 255) ? 255 : b;
-
-                            radius = Convert.ToDouble(dgv.Rows[3].Cells[1].Value);
-                            length = Convert.ToDouble(dgv.Rows[4].Cells[1].Value);
-
-                            specular = Convert.ToDouble(dgv.Rows[5].Cells[1].Value);
-                            reflective = Convert.ToDouble(dgv.Rows[6].Cells[1].Value);
-
-                            specular = (specular < 0) ? 0 : specular;
-                            specular = (specular > 1000) ? 1000 : specular;
-
-                            reflective = (reflective < 0) ? 0 : reflective;
-                            reflective = (reflective > 1) ? 1 : reflective;
-
-                            Vector3 pos = new Vector3(x, y, z);
-
-                            Vector3 color = new Vector3(r, g, b);
-
-                            Cylinder tmp_prim = new Cylinder(pos, color, radius, length, specular, reflective);
-                            facade_viewer.controller.scene.primitives[tmp - obj_count[4] - 1] = tmp_prim;
-                        }
-                        catch
-                        {
-                            MessageBox.Show("Ошибка при изменении атрибутов объекта");
-                        }
-                    }
-                    else if (prim is Pyramid)
-                    {
-                        try
-                        {
-                            double x, y, z;
-                            double r, g, b;
-                            double height, width;
-                            double specular, reflective;
-
-                            x = Convert.ToDouble(dgv.Rows[0].Cells[1].Value);
-                            y = Convert.ToDouble(dgv.Rows[1].Cells[1].Value);
-                            z = Convert.ToDouble(dgv.Rows[2].Cells[1].Value);
-
-                            r = Convert.ToInt16(dgv.Rows[7].Cells[1].Value);
-                            g = Convert.ToInt16(dgv.Rows[8].Cells[1].Value);
-                            b = Convert.ToInt16(dgv.Rows[9].Cells[1].Value);
-
-                            r = (r < 0) ? 0 : r;
-                            r = (r > 255) ? 255 : r;
-
-                            g = (g < 0) ? 0 : g;
-                            g = (g > 255) ? 255 : g;
-
-                            b = (b < 0) ? 0 : b;
-                            b = (b > 255) ? 255 : b;
-
-                            height  = Convert.ToDouble(dgv.Rows[3].Cells[1].Value);
-                            width = Convert.ToDouble(dgv.Rows[4].Cells[1].Value);
-
-                            specular = Convert.ToDouble(dgv.Rows[5].Cells[1].Value);
-                            reflective = Convert.ToDouble(dgv.Rows[6].Cells[1].Value);
-
-                            specular = (specular < 0) ? 0 : specular;
-                            specular = (specular > 1000) ? 1000 : specular;
-
-                            reflective = (reflective < 0) ? 0 : reflective;
-                            reflective = (reflective > 1) ? 1 : reflective;
-
-                            Vector3 pos = new Vector3(x, y, z);
-
-                            Vector3 color = new Vector3(r, g, b);
-
-                            Pyramid tmp_prim = new Pyramid(pos, color, height, width, specular, reflective);
-                            facade_viewer.controller.scene.primitives[tmp - obj_count[4] - 1] = tmp_prim;
-                        }
-                        catch
-                        {
-                            MessageBox.Show("Ошибка при изменении атрибутов объекта");
-                        }
                     }
                 }
             }

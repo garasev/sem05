@@ -56,14 +56,13 @@ GROUP BY exp
 
 -- 8.* Минимальный и максимальный рейтинг водителей по стажу
 -- 8.* Инструкция SELECT, использующая скалярные подзапросы в выражениях столбцов.
-SELECT *
-FROM drivers
-WHERE raiting = 
+SELECT driver_id, name,
 (
-	SELECT MIN(raiting)
-	FROM drivers
-)
-GROUP BY exp
+    SELECT MIN(time)
+    FROM schedules
+	WHERE schedules.driver_id = drivers.driver_id
+) AS min_data
+FROM drivers
 
 -- 9. Проверка готовности трамвайев
 -- 9. Инструкция SELECT, использующая простое выражение CASE.

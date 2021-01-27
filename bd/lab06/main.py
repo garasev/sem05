@@ -59,12 +59,10 @@ class DatabaseFacade:
     # функция
     def get_4(self):
         self.cursor.callproc("get_tram_count")
-        self.connection.commit()
 
     # Многооператорная
     def get_5(self, hour):
         self.cursor.callproc("get_shedule_top_driver_after_hour", [hour])
-        self.connection.commit()
 
     # Процедура
     def get_6(self, pid, cap):
@@ -76,12 +74,17 @@ class DatabaseFacade:
     def get_7(self):
         self.cursor.callproc("version")
 
+    # Создание
     def get_8(self):
         self.cursor.execute("CREATE TABLE IF NOT EXISTS task_8 (LIKE schedules INCLUDING ALL)")
+        self.connection.commit()
 
+    # Удаление
     def drop_8(self):
         self.cursor.execute("DROP TABLE IF EXISTS task_8 CASCADE")
+        self.connection.commit()
 
+    # Вставка
     def get_9(self):
         self.cursor.execute("INSERT INTO task_8 SELECT * FROM schedules")
         self.cursor.execute("SELECT * FROM task_8")
