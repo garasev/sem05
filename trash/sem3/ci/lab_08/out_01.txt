@@ -1,2 +1,0 @@
-Input size of array: a
- Incorrect input size of array

@@ -1,7 +1,0 @@
-Input size of array: 3
-Input elem of array:
-1
-2
-3
-Input p: f
- Incorrect input p

@@ -1,3 +1,0 @@
-Input size of array: 2
-Input elem of array:
-а
