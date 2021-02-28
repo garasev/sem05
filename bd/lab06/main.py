@@ -21,8 +21,13 @@ class DatabaseFacade:
         if data is None:
             print(' No query provided!')
         else:
+            print(type(data))
+            print(type(data[0]))
             for row in data:
-                print(' ', row)
+                # print(' ', row)
+                for info in row:
+                    print(info, end=')(')
+                print('')
 
     # Сколько всего трамваев в депо
     def get_0(self):
